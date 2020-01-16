@@ -67,7 +67,6 @@ class Player:
         # defines game_over as global
         global game_over
         
-        # 
         # get keys
         keys = pygame.key.get_pressed()
         
