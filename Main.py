@@ -27,6 +27,16 @@ class Screen:
         self.screen.blit(player.img, (player.x, player.y))
         # playerRect = pygame.draw.rect(screen, (255, 0, 0), (player.x, player.y, player.width, player.height))
         pygame.display.update()
+        
+    def events(self):        
+        #allows game_over to be modified in the function
+        global game_over
+        
+        # test for events
+        for event in pygame.event.get():
+            #quit if closed
+            if event.type == pygame.QUIT:
+                game_over = True
 
 # player class
 class Player:
@@ -64,7 +74,7 @@ class Player:
     
     #update player
     def update(self):
-        # defines game_over as global
+        # allows game_over to be modified insidr the function
         global game_over
         
         # get keys
@@ -128,13 +138,8 @@ player = Player(100, screen.height - 305)
 # main game loop
 while not game_over:
     
-    # test for events
-    for event in pygame.event.get():
-        #quit if closed
-        if event.type == pygame.QUIT:
-            game_over = True
-    
-    # update player, redraw screen and tick clock
+    # handle events, update player, redraw screen and tick clock
+    screen.events()
     player.update()
     screen.redraw()
     clock.tick(fps)
