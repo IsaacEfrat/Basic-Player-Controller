@@ -1,3 +1,4 @@
+#imports pygame module
 import pygame
 
 # initializes pygame
